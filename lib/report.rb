@@ -8,7 +8,7 @@ class Report
   end
 
   def by_last_name_descending
-    records.sort {|a, b| b <=> a }
+    records.sort_by(&:last_name).reverse
   end
 
   def full_output
