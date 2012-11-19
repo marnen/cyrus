@@ -1,15 +1,21 @@
 class Report
-  def initialize(path)
-    @path = path
+  def initialize(paths)
+    @paths = *paths
   end
 
   def by_last_name_descending
-    File.open path do |file|
-      file.readlines.sort {|a, b| b <=> a }
-    end
+    records.sort {|a, b| b <=> a }
+  end
+
+  def full_output
+    "Output 3:\n#{by_last_name_descending.join "\n"}"
   end
 
   private
 
-  attr_reader :path
+  attr_reader :paths
+
+  def records
+    @records ||= paths.inject([]) {|array, path| array + File.open(path) {|file| file.readlines } }
+  end
 end
