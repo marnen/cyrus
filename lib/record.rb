@@ -1,1 +1,1 @@
-Record = Struct.new :first_name, :last_name, :gender, :favorite_color, :date_of_birth
+Record = Struct.new :first_name, :middle_initial, :last_name, :gender, :favorite_color, :date_of_birth

@@ -23,28 +23,59 @@ describe FileParser do
       end
     end
 
-    describe 'comma-delimited' do
-      let(:data) { 'Abercrombie, Neil, Male, Tan, 2/13/1943' }
+    describe 'parsing' do
       let(:record) { records.first }
 
-      it 'parses the first name' do
-        record.first_name.must_equal 'Neil'
+      describe 'comma-delimited' do
+        let(:data) { 'Abercrombie, Neil, Male, Tan, 2/13/1943' }
+
+        it 'parses the first name' do
+          record.first_name.must_equal 'Neil'
+        end
+
+        it 'parses the last name' do
+          record.last_name.must_equal 'Abercrombie'
+        end
+
+        it 'parses the gender' do
+          record.gender.must_equal :male
+        end
+
+        it 'parses the favorite color' do
+          record.favorite_color.must_equal 'Tan'
+        end
+
+        it 'parses the date of birth' do
+          record.date_of_birth.must_equal Date.civil 1943, 2, 13
+        end
       end
 
-      it 'parses the last name' do
-        record.last_name.must_equal 'Abercrombie'
-      end
+      describe 'pipe-delimited' do
+        let(:data) { 'Seles Monica H F 12-2-1973 Black' }
 
-      it 'parses the gender' do
-        record.gender.must_equal :male
-      end
+        it 'parses the first name' do
+          record.first_name.must_equal 'Monica'
+        end
 
-      it 'parses the favorite color' do
-        record.favorite_color.must_equal 'Tan'
-      end
+        it 'parses the middle initial' do
+          record.middle_initial.must_equal 'H'
+        end
 
-      it 'parses the date of birth' do
-        record.date_of_birth.must_equal Date.civil 1943, 2, 13
+        it 'parses the last name' do
+          record.last_name.must_equal 'Seles'
+        end
+
+        it 'parses the gender' do
+          record.gender.must_equal :female
+        end
+
+        it 'parses the favorite color' do
+          record.favorite_color.must_equal 'Black'
+        end
+
+        it 'parses the date of birth' do
+          record.date_of_birth.must_equal Date.civil 1973, 12, 2
+        end
       end
     end
   end

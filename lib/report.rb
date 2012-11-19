@@ -3,6 +3,10 @@ class Report
     @paths = *paths
   end
 
+  def by_date_of_birth
+    records.sort_by &:date_of_birth
+  end
+
   def by_last_name_descending
     records.sort {|a, b| b <=> a }
   end
