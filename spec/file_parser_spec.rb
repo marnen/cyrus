@@ -32,21 +32,21 @@ describe FileParser do
         mock.expect :new, parser_mock, [["#{data}\n"]]
       end
 
-      describe 'comma-delimited' do
-        let(:parsers) { {comma: parser_class_mock} }
-        let(:data) { 'Abercrombie, Neil, Male, Tan, 2/13/1943' }
+      describe 'pipe-delimited' do
+        let(:parsers) { {pipe: parser_class_mock} }
+        let(:data) { 'Smith | Steve | D | M | Red | 3-3-1985' }
 
-        it 'uses the comma-delimited data parser' do
+        it 'uses the pipe-delimited data parser' do
           records.must_equal records_mock
           parser_class_mock.verify
         end
       end
 
-      describe 'space-delimited' do
-        let(:parsers) { {space: parser_class_mock} }
-        let(:data) { 'Seles Monica H F 12-2-1973 Black' }
+      describe 'comma-delimited' do
+        let(:parsers) { {comma: parser_class_mock} }
+        let(:data) { 'Abercrombie, Neil, Male, Tan, 2/13/1943' }
 
-        it 'uses the space-delimited data parser' do
+        it 'uses the comma-delimited data parser' do
           records.must_equal records_mock
           parser_class_mock.verify
         end

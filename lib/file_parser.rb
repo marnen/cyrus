@@ -1,8 +1,9 @@
+require_relative 'pipe_delimited'
 require_relative 'comma_delimited'
 require_relative 'space_delimited'
 
 class FileParser
-  PARSERS = {comma: CommaDelimited, space: SpaceDelimited}
+  PARSERS = {pipe: PipeDelimited, comma: CommaDelimited, space: SpaceDelimited}
 
   def initialize(path)
     @path = path
@@ -26,7 +27,14 @@ class FileParser
 
   def format
     unless @format
-      @format = data.first.include?(',') ? :comma : :space
+      first_line = data.first
+      if first_line.include? ','
+        @format = :comma
+      elsif first_line.include? '|'
+        @format = :pipe
+      else
+        @format = :space
+      end
     end
     @format
   end
