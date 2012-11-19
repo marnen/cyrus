@@ -1,8 +1,6 @@
 require_relative 'parser/base'
 
 class SpaceDelimited < Parser::Base
-  GENDER = {'M' => :male, 'F' => :female}
-
   def records
     @records ||= data.collect do |row|
       record = Record.new
