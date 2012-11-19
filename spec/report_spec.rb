@@ -73,8 +73,14 @@ G Martina M F 4-2-1979 Green
 I Monica H F 12-2-1973 Black
     SPACE
 
+    let(:full_output) { report.full_output }
+
+    it 'returns by_date_of_birth as output 2' do
+      full_output.must_include "Output 2:\n#{report.by_date_of_birth.join "\n"}"
+    end
+
     it 'returns by_last_name_descending as output 3' do
-      report.full_output.must_include "Output 3:\n#{report.by_last_name_descending.join "\n"}"
+      full_output.must_include "Output 3:\n#{report.by_last_name_descending.join "\n"}"
     end
   end
 end

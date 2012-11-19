@@ -12,7 +12,13 @@ class Report
   end
 
   def full_output
-    "Output 3:\n#{by_last_name_descending.join "\n"}"
+    <<-"EOF"
+Output 2:
+#{by_date_of_birth.join "\n"}
+
+Output 3:
+#{by_last_name_descending.join "\n"}
+    EOF
   end
 
   private
