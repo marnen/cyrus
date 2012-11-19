@@ -1,9 +1,7 @@
-class PipeDelimited
-  GENDER = {'M' => :male, 'F' => :female}
+require_relative 'parser/base'
 
-  def initialize(data)
-    @data = data
-  end
+class PipeDelimited < Parser::Base
+  GENDER = {'M' => :male, 'F' => :female}
 
   def records
     @records ||= data.collect do |row|
@@ -19,8 +17,4 @@ class PipeDelimited
       record
     end
   end
-
-  private
-
-  attr_accessor :data
 end

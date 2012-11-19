@@ -1,9 +1,7 @@
-class SpaceDelimited
-  GENDER = {'M' => :male, 'F' => :female}
+require_relative 'parser/base'
 
-  def initialize(data)
-    @data = data
-  end
+class SpaceDelimited < Parser::Base
+  GENDER = {'M' => :male, 'F' => :female}
 
   def records
     @records ||= data.collect do |row|
@@ -19,8 +17,4 @@ class SpaceDelimited
       record
     end
   end
-
-  private
-
-  attr_accessor :data
 end
