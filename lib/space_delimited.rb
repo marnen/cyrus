@@ -1,14 +1,14 @@
 class SpaceDelimited
   GENDER = {'M' => :male, 'F' => :female}
 
-  def initialize(path)
-    @path = path
+  def initialize(data)
+    @data = data
   end
 
   def records
     unless @records
       @records = []
-      IO.readlines(path).each do |row|
+      data.each do |row|
         record = Record.new
         fields = row.strip.split ' '
         record.last_name = fields[0]
@@ -26,5 +26,5 @@ class SpaceDelimited
 
   private
 
-  attr_accessor :path
+  attr_accessor :data
 end
