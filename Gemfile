@@ -1,4 +1,8 @@
 source 'https://rubygems.org'
 
 gem 'rake'
-gem 'guard-minitest', group: :development
+
+group :development do
+  gem 'guard-minitest'
+  gem 'debugger'
+end
