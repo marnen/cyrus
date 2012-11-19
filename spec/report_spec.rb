@@ -48,7 +48,7 @@ I Monica H F 12-2-1973 Black
     it 'sorts input names by last name, descending' do
       output = report.by_last_name_descending
       ('A'..'I').to_a.reverse.each_with_index do |name, i|
-        output[i].split(' ').first.chomp(',').must_equal name
+        output[i].last_name.must_equal name
       end
     end
   end
