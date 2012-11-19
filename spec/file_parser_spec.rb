@@ -51,6 +51,16 @@ describe FileParser do
           parser_class_mock.verify
         end
       end
+
+      describe 'space-delimited' do
+        let(:parsers) { {space: parser_class_mock} }
+        let(:data) { 'Kournikova Anna F F 6-3-1975 Red' }
+
+        it 'uses the space-delimited data parser' do
+          records.must_equal records_mock
+          parser_class_mock.verify
+        end
+      end
     end
   end
 end
