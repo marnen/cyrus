@@ -4,7 +4,7 @@ class FileParser
   end
 
   def records
-    IO.readlines(path)
+    IO.readlines(path).collect {|line| Record.new }
   end
 
   private
