@@ -12,7 +12,7 @@ describe FileParser do
 
     describe 'general properties' do
       let(:count) { rand(10) + 1 }
-      let(:data) { "a line\n" * count }
+      let(:data) { "Abercrombie, Neil, Male, Tan, 2/13/1943\n" * count }
 
       it 'returns one record for each line in the input file' do
         records.count.must_equal count
@@ -20,6 +20,31 @@ describe FileParser do
 
       it 'returns an array of Record objects' do
         records.each {|record| record.must_be_kind_of Record }
+      end
+    end
+
+    describe 'comma-delimited' do
+      let(:data) { 'Abercrombie, Neil, Male, Tan, 2/13/1943' }
+      let(:record) { records.first }
+
+      it 'parses the first name' do
+        record.first_name.must_equal 'Neil'
+      end
+
+      it 'parses the last name' do
+        record.last_name.must_equal 'Abercrombie'
+      end
+
+      it 'parses the gender' do
+        record.gender.must_equal :male
+      end
+
+      it 'parses the favorite color' do
+        record.favorite_color.must_equal 'Tan'
+      end
+
+      it 'parses the date of birth' do
+        record.date_of_birth.must_equal Date.civil 1943, 2, 13
       end
     end
   end

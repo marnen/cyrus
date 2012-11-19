@@ -1,2 +1,1 @@
-class Record
-end
+Record = Struct.new :first_name, :last_name, :gender, :favorite_color, :date_of_birth

@@ -16,6 +16,6 @@ class Report
   attr_reader :paths
 
   def records
-    @records ||= paths.inject([]) {|array, path| array + File.open(path) {|file| file.readlines } }
+    @records ||= paths.inject([]) {|array, path| array + FileParser.new(path).records }
   end
 end
