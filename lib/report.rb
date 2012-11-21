@@ -7,12 +7,19 @@ class Report
     records.sort_by &:date_of_birth
   end
 
+  def by_gender_and_last_name
+    records.sort_by {|record| [record.gender, record.last_name] }
+  end
+
   def by_last_name_descending
     records.sort_by(&:last_name).reverse
   end
 
   def full_output
     <<-"EOF"
+Output 1:
+#{by_gender_and_last_name.join "\n"}
+
 Output 2:
 #{by_date_of_birth.join "\n"}
 
