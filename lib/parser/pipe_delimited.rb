@@ -1,6 +1,6 @@
-require_relative 'parser/base'
+require 'parser/base'
 
-class PipeDelimited < Parser::Base
+class Parser::PipeDelimited < Parser::Base
   def records
     @records ||= data.collect do |row|
       record = Record.new

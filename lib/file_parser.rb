@@ -1,9 +1,9 @@
-require_relative 'pipe_delimited'
-require_relative 'comma_delimited'
-require_relative 'space_delimited'
+require 'parser/pipe_delimited'
+require 'parser/comma_delimited'
+require 'parser/space_delimited'
 
 class FileParser
-  PARSERS = {pipe: PipeDelimited, comma: CommaDelimited, space: SpaceDelimited}
+  PARSERS = {pipe: Parser::PipeDelimited, comma: Parser::CommaDelimited, space: Parser::SpaceDelimited}
 
   def initialize(path)
     @path = path
