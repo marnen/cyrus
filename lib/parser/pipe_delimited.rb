@@ -1,18 +1,13 @@
 require 'parser/base'
 
 class Parser::PipeDelimited < Parser::Base
-  private
+  class << self
+    def delimiter
+      '|'
+    end
 
-  def parse_row(row)
-    record = Record.new
-    fields = row.split('|').collect &:strip
-    record.last_name = fields[0]
-    record.first_name = fields[1]
-    record.middle_initial = fields[2]
-    record.gender = GENDER[fields[3]]
-    record.favorite_color = fields[4]
-    date = fields[5].split(/\D/).collect &:to_i
-    record.date_of_birth = Date.civil date[2], date[0], date[1]
-    record
+    def fields
+      [:last_name, :first_name, :middle_initial, :gender, :favorite_color, :date_of_birth]
+    end
   end
 end
