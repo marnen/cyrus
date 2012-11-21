@@ -1,12 +1,6 @@
 require 'parser/base'
 
 class Parser::CommaDelimited < Parser::Base
-  def records
-    @records ||= data.collect do |row|
-      parse_row row
-    end
-  end
-
   private
 
   def parse_row(row)

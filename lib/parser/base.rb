@@ -6,6 +6,10 @@ module Parser
       @data = data
     end
 
+    def records
+      @records ||= data.collect {|row| parse_row row }
+    end
+
     private
 
     attr_accessor :data

@@ -1,11 +1,7 @@
 require 'parser/base'
 
 class Parser::PipeDelimited < Parser::Base
-  def records
-    @records ||= data.collect do |row|
-      parse_row row
-    end
-  end
+  private
 
   def parse_row(row)
     record = Record.new
