@@ -1,8 +1,6 @@
-class CommaDelimited
-  def initialize(data)
-    @data = data
-  end
+require_relative 'parser/base'
 
+class CommaDelimited < Parser::Base
   def records
     @records ||= data.collect do |row|
       record = Record.new
