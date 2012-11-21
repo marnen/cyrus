@@ -16,21 +16,24 @@ class Report
   end
 
   def full_output
-    <<-"EOF"
-Output 1:
-#{by_gender_and_last_name.join "\n"}
-
-Output 2:
-#{by_date_of_birth.join "\n"}
-
-Output 3:
-#{by_last_name_descending.join "\n"}
-    EOF
+    unless @full_output
+      @full_output = ''
+      outputs.each_with_index do |output, i|
+        @full_output << "Output #{i + 1}:\n"
+        @full_output << self.send(output).join("\n")
+        @full_output << "\n\n"
+      end
+    end
+    @full_output
   end
 
   private
 
   attr_reader :paths
+
+  def outputs
+    [:by_gender_and_last_name, :by_date_of_birth, :by_last_name_descending]
+  end
 
   def records
     @records ||= paths.inject([]) {|array, path| array + FileParser.new(path).records }
