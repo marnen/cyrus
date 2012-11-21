@@ -1,3 +1,6 @@
+require 'record'
+require 'date'
+
 module Parser
   class Base
     GENDER = {'M' => :male, 'F' => :female}

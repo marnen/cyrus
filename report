@@ -1,0 +1,11 @@
+#!/usr/bin/env ruby
+require_relative 'bootstrap'
+require 'report'
+
+argv = ARGF.argv
+if argv.empty?
+  warn 'Usage: report file1.txt [file2.txt [file3.txt ...]]'
+else
+  report = Report.new argv
+  puts report.full_output
+end

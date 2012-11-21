@@ -1,3 +1,5 @@
+require 'file_parser'
+
 class Report
   def initialize(paths)
     @paths = *paths
